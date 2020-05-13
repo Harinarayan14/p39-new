@@ -29,66 +29,75 @@ class Game {
       form.display();
     }
 
-    car1 = createSprite(100,200);
-    car1.addImage("car1",car1_img);
-    car2 = createSprite(300,200);
-    car2.addImage("car2",car2_img);
-    car3 = createSprite(500,200);
-    car3.addImage("car3",car3_img);
-    car4 = createSprite(700,200);
-    car4.addImage("car4",car4_img);
-    cars = [car1, car2, car3, car4];
+    ath1 = createSprite(100,200);
+    ath2 = createSprite(300,200);
+    ath3 = createSprite(500,200);
+    ath4 = createSprite(700,200);
+    aths = [ath1, ath2, ath3, ath4];
   }
 
   play(){
     form.hide();
-    
+    hurdle.destroy1();
     Player.getPlayerInfo();
     
-    if(allPlayers !== undefined){
-      background(rgb(198,135,103));
-      image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
+    if(allPlayers !== undefined){      
+        background(0);
+      image(track, 0,0,displayWidth*2.5, displayHeight);
       
       //var display_position = 100;
       
       //index of the array
       var index = 0;
 
-      //x and y position of the cars
-      var x = 175 ;
-      var y;
+      //x and y position of the aths
+      var x  ;
+      var y= -150;
 
       for(var plr in allPlayers){
         //add 1 to the index for every loop
         index = index + 1 ;
 
-        //position the cars a little away from each other in x direction
-        x = x + 200;
-        //use data form the database to display the cars in y direction
-        y = displayHeight - allPlayers[plr].distance;
-        cars[index-1].x = x;
-        cars[index-1].y = y;
+        //position the aths a little away from each other in y direction
+        y = y + 200;
+        //use data from the database to display the aths in x direction
+        x = allPlayers[plr].distance + 20;
+        aths[index-1].x = x;
+        aths[index-1].y = y;
 
         if (index === player.index){
-          fill(255,0,0);
-          ellipse(x,y,70,70);
-          cars[index - 1].shapeColor = "red";
-          camera.position.x = displayWidth/2;
-          camera.position.y = cars[index-1].y;
+          aths[index - 1].shapeColor = "white";
+          camera.position.y = displayHeight/2;
+          camera.position.x = aths[index-1].x;
         }
        
-        //textSize(15);
-        //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
+    if(keyIsDown(UP_ARROW) && player.index !== null &&(player.distance >630 && player.distance<800)){
+      player.distance = 850;
+      player.update();
+    }  
+    if(keyIsDown(UP_ARROW) && player.index !== null &&(player.distance >1370 && player.distance<1500)){
+      player.distance = 1550;
+      player.update();
+    }  
+    if(keyIsDown(UP_ARROW) && player.index !== null &&(player.distance >2030 && player.distance<2200)){
+      player.distance = 2250
+      player.update();
+    }  
+    if(keyIsDown(UP_ARROW) && player.index !== null &&(player.distance >2670 && player.distance<2800)){
+       player.distance = 2850
+      player.update();
+    }
+
       }
 
     }
 
-    if(keyIsDown(UP_ARROW) && player.index !== null){
+    if(keyIsDown(RIGHT_ARROW) && player.index !== null){
       player.distance +=10
       player.update();
     }
 
-    if(player.distance > 3860){
+    if(player.distance > 3500){
       gameState = 2;
     }
    
