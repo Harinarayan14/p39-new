@@ -13,8 +13,8 @@ var aths, ath1, ath2, ath3, ath4;
 var track, ath1_img, ath2_img, ath3_img, ath4_img;
 
 function preload(){
-  track = loadImage("../images/track.jpg");
-  backgroundImage = loadImage("../images/ground.png");
+  track = loadImage("./images/track.jpg");
+  backgroundImage = loadImage("./images/ground.png");
 }
 
 function setup(){
