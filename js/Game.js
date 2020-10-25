@@ -62,9 +62,10 @@ class Game {
         y = y + 200;
         //use data from the database to display the aths in x direction
         x = allPlayers[plr].distance + 20;
+        if(gameState===1){
         aths[index-1].x = x;
         aths[index-1].y = y;
-
+        }
         if (index === player.index){
           aths[index - 1].shapeColor = "white";
           camera.position.y = displayHeight/2;
